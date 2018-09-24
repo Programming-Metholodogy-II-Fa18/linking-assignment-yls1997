@@ -1,0 +1,82 @@
+  private int[] array;
+    private int[]array2;
+    private int elements_numbers = 0;
+    private int index1 = 0;
+    private int index2 = 0;
+
+
+    public Sorting(int length) {
+        array = new int[length];
+        array2=new int[length];
+    }
+
+
+    public void Push(int first) {
+            for (int i = index2; i >= index1; i--) {
+                array[i + 1] = array[i];
+                array2[i + 1] = array2[i];
+            }
+            array[0] = first;
+            array2[0] = first;
+            elements_numbers++;
+            index2=elements_numbers-1;
+        }
+
+
+
+    public int Pop() {
+        int num = array[0];
+        for (int i = index1; i < array.length - 1; i++) {
+            array[i] = array[i + 1];
+        }
+        for(int i=index1;i<array2.length-1;i++){
+            if (array2[i]==s){
+                do{
+                    array2[j]=array2[j+1];
+                }while(int j=i;j<array2.length-1;j++);
+            }
+        }
+        return num;
+    }
+
+
+    public void print(){
+        System.out.print("[");
+        for(int i=0;i<array.length;i++){
+            System.out.print(" "+array[i]);
+        }
+        System.out.println("]");
+    }
+
+    public void InsertionSort(){
+        print();
+        for(int i=0;i<array.length-1;i++){
+            int j;
+            for (j=i;j>=0&& array[i+1] < array[j];j--){
+            }
+            if(j!=i&&j>=0&&array[i+1]>array[j]){
+                System.out.println("Swapped "+array[i+1]+" with "+array[j+1]);
+                swap(i+1,j+1);
+                print();
+            }else if(j==-1&&array[i+1]<array[0]){
+                System.out.println("Swapped "+array[i+1]+" with "+array[0]);
+                swap(i+1,0);
+                print();
+            }
+        }
+        System.out.println("Sort Finished!");
+    }
+    public void swap(int a,int b){
+        int s=array[a];
+        for (int i=a;i>b;i--){
+            array[i]=array[i-1];
+        }
+        array[i-1]=s;
+    }
+    public int peek(){
+        return array[0];
+    }
+    public int pastPeek(){
+        return array2[0];
+    }
+}
