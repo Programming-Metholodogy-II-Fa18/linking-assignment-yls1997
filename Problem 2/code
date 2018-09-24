@@ -1,0 +1,117 @@
+import java.util.*;
+import java.util.Scanner;
+public class ArbitrayQueueArray {
+    private array[] array;
+    private int elements_numbers = 0;
+    private int index1 = 0;
+    private int index2 = 0;
+    private int size=0;
+
+
+    public ArbitrayQueueArray(int length) {
+        if (length <= 0) {
+            Scanner input = new Scanner(System.in);
+            System.out.println("Your input is a negative number or zero. Please enter a positive number:");
+            length = input.nextInt();
+        }
+        array = (array[]) new Object[length];
+    }
+    public void extend(){
+        array[] a=array;
+        int length=array.length*2;
+        array=(array[]) new Object[length];
+        for(int i=0;i<size;i++){
+            array[i]=a[i];
+        }
+    }
+    public void shroten(){
+        array[]a=array;
+        int length=(array.length/2);
+        array=(array[]) new Object[length];
+        for(int i=0;i<size;i++){
+            array[i]=a[i];
+        }
+    }
+
+
+    public void Push(array) {
+        if (size > 0 && size < array.length) {
+            for (int i = index2; i >= index1; i--) {
+                array[i + 1] = array[i];
+            }
+            array[0] = first;
+            size++;
+            elements_numbers++;
+            index2++;
+
+        } else if (size == 0 && size < array.length) {
+            array[0] = first;
+            size++;
+            index2++;
+            elements_numbers++;
+        } else
+              {
+            throw new ArrayIndexOutOfBoundsException("Push failed.");
+        }
+    }
+
+
+    public void Enqueue(array) {
+           do{
+            array[index2]=last;
+            size++;
+            index2++;
+            elements_numbers++;
+        }while(size<array.length);
+    }
+
+
+
+
+
+    public array Pop() {
+        if (size < 0) {
+            array s = array[0];
+            for (int i = index1; i < array.length - 1; i++) {
+                array[i] = array[i + 1];
+            }
+            array[array.length-1]=null;
+            size--;
+            index2--;
+            elements_numbers--;
+            return s;
+        } else if (size == 0) {
+            throw new NoSuchElementException("This array is empty.");
+        }
+        throw new NoSuchElementException("This array is empty.");
+    }
+
+    public array Dequeue() {
+        if(size>0){
+            array s = array[elements_numbers - 1];
+            array[elements_numbers - 1] = null;
+            size--;
+            elements_numbers--;
+            index2--;
+            return s;
+        }else if(size==0){
+            throw new NoSuchElementException("This array is empty.");
+        }
+        throw new NoSuchElementException("This array is empty.");
+    }
+
+    public array Traverse(int index) {
+        if (index < 0) {
+             System.out.println("The array is already full. You can not push more element.");
+        } else if (index < array.length) {
+            return array[index];
+        } else {
+            System.out.println("The index is out of bounds because of the length of the array.");
+        }
+    }
+    public void println() {
+        for (int i = 0; i < array.length; i++) {
+            System.out.println(" " + array[i]);
+        }
+    }
+}
