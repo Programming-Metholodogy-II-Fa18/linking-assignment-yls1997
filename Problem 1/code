@@ -1,0 +1,104 @@
+import java.util.*;
+import java.util.Scanner;
+public class ArbitrayQueue<array_type> {
+    private array[] array;
+    private int elements_numbers = 0;
+    private int index1 = 0;
+    private int index2 = 0;
+    private int size=0;
+
+
+    public ArbitrayQueue(int length) {
+        if (length <= 0) {
+            Scanner input = new Scanner(System.in);
+            System.out.println("Your input is a negative number or zero. Please enter a positive number:");
+            length = input.nextInt();
+        }
+        array = (array[]) new Object[length];
+    }
+
+
+    public void Push(array_type first) {
+        if (size > 0 && size < array.length) {
+            for (int i = index2; i >= index1; i--) {
+                array[i + 1] = array[i];
+            }
+            array[0] = first;
+            size++;
+            elements_numbers++;
+            index2++;
+
+        } else if (size == 0 && size < array.length) {
+            array[0] = first;
+            size++;
+            index2++;
+            elements_numbers++;
+        } else 
+             {
+            System.out.println("The array is already full. You can not push more element.");
+        }
+    }
+
+
+    public void Enqueue(array_type last) {
+        if(size<array.length){
+            array[index2]=last;
+            size++;
+            index2++;
+            elements_numbers++;
+        }else
+             {
+            System.out.println("The array is already full. You can not push more element.");
+        }
+    }
+
+
+
+
+
+    public array_type Pop() {
+        if (size < 0) {
+            array_type s = array[0];
+            for (int i = index1; i < array.length - 1; i++) {
+                array[i] = array[i + 1];
+            }
+            array[array.length-1]=null;
+            size--;
+            index2--;
+            elements_numbers--;
+            return s;
+        } else if (size == 0) {
+             System.out.println("This array is empty.");
+        }
+        
+    }
+
+    public array_type Dequeue() {
+        if(size>0){
+            array_type s = array[elements_numbers - 1];
+            array[elements_numbers - 1] = null;
+            size--;
+            elements_numbers--;
+            index2--;
+            return s;
+        }else if(size==0){
+             System.out.println("This array is empty.");
+        }
+      
+    }
+
+    public array_type Traverse(int index) {
+        if (index < 0) {
+             System.out.println("The array is already full. You can not push more element.");
+        } else if (index < array.length) {
+            return array[index];
+        } else {
+             System.out.println("The index is out of bounds because of the length of the array.");
+        }
+    }
+    public void println() {
+        for (int i = 0; i < array.length; i++) {
+            System.out.println(" " + array[i]);
+        }
+    }
+}
